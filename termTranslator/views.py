@@ -34,6 +34,7 @@ def searchView(request):
     else:
         form = searchForm()
 
+
     return render_to_response('search.html',
                               {'form':form},
         context_instance=RequestContext(request))
