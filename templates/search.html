@@ -1,0 +1,56 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/sci_term_style.css" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ STATIC_URL }}/css/font-awesome.css"/>
+
+<body>
+<form method='get'>
+
+{#    {% csrf_token %}#}
+    <div class="box">
+        <img src="{{ STATIC_URL }}images/logo_sci_term_translator.png" width=500/>
+
+        <div class="container-1">
+            <span class="icon"><i class="fa fa-search"></i></span>
+            {{ form.search_query }}
+        </div>
+
+        <div class="translate-to-radio">
+            {% for id, name in form.prefix.field.choices%}
+
+                <input type="radio" id="{{name}}" name="prefix" value="{{id}}">
+        	        <label for="{{name}}">{{ name }} </label>
+            {% endfor %}
+        </div>
+
+        <input type="submit" id="translateButton" value="Translate" />
+
+        <div class="box">
+                <div class="container-1">
+                    <span class="icon"><i class="fa fa-language fa"></i></span>
+                    {{ form.answer }}
+                </div>
+        </div>
+    </div>
+
+
+
+
+{#{% if form.errors %}#}
+{#    {% for field in form %}#}
+{#        {% for error in field.errors %}#}
+{#            <div class="alert alert-error">#}
+{#                <strong>{{ error|escape }}</strong>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endfor %}#}
+{#    {% for error in form.non_field_errors %}#}
+{#        <div class="alert alert-error">#}
+{#            <strong>{{ error|escape }}</strong>#}
+{#        </div>#}
+{#    {% endfor %}#}
+{#{% endif %}#}
+
+</form>
+</body>
