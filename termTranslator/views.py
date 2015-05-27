@@ -22,7 +22,7 @@ def searchView(request):
 
             print "Translate To: %s" % prefix
             try:
-                page = wikipedia_updated.page(search_query.decode('utf-8'))
+                page = wikipedia_updated.page(search_query.encode('utf-8'))
 
                 answer = page.lang_title(prefix)
                 print("Answer: %s" % answer)
