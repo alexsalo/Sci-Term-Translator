@@ -24,7 +24,11 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '.alexsalo.ru',  # Allow domain and subdomains
+    '.elasticbeanstalk.com',  # Also allow FQDN and subdomains
+]
 
 
 # Application definition
@@ -83,6 +87,8 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles'),
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
