@@ -3,7 +3,7 @@ from forms import *
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 import langid
-import wikipedia_updated as wk
+import wikipedia_updated
 
 supported_prefixes = [prefix[0] for prefix in SUPPORTED_PREFIXES]
 print 'supported_prefixes: ' + str(supported_prefixes)
@@ -15,14 +15,14 @@ def searchView(request):
         if ('prefix' in request.GET) and request.GET['prefix'].strip():
             prefix = request.GET['prefix']
 
-            print(search_query)
+            #print(search_query)
             detected_langid = langid.classify(search_query)[0]
             print "Detected Lang: %s" % detected_langid
-            wk.set_lang(detected_langid)
+            wikipedia_updated.set_lang(detected_langid)
 
             print "Translate To: %s" % prefix
             try:
-                page = wk.page(search_query)
+                page = wikipedia_updated.page(search_query)
 
                 answer = page.lang_title(prefix)
                 print("Answer: %s" % answer)
