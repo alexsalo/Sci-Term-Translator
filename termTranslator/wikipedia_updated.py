@@ -313,7 +313,11 @@ class WikipediaPage(object):
     }
     request = _wiki_request(query_params)
     pageid = list(request['query']['pages'])[0]
-    return request['query']['pages'][pageid]['langlinks'][0]['*']
+    translation = request['query']['pages'][pageid]['langlinks'][0]['*']
+    print type(translation), translation
+    translation = translation.encode('UTF-8')
+    print type(translation), translation
+    return translation
     # print self.title
     # print self.pageid
     # old_api_url = API_URL
