@@ -34,7 +34,6 @@ def searchView(request):
                 print "term was not found"
                 #answer = "term was not found"
                 answer = str(e)
-            answer = search_query
             form = searchForm(initial={'answer': answer})
     else:
         form = searchForm()
