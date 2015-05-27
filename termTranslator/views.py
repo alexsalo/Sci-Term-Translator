@@ -20,16 +20,26 @@ def searchView(request):
             print "Detected Lang: %s" % detected_langid
             wikipedia_updated.set_lang(detected_langid)
 
+            if type(search_query) == str:
+                # Ignore errors even if the string is not proper UTF-8 or has
+                # broken marker bytes.
+                # Python built-in function unicode() can do this.
+                search_query = unicode(search_query, "utf-8", errors="ignore")
+            else:
+                # Assume the value object has proper __unicode__() method
+                search_query = unicode(search_query)
+
             print "Translate To: %s" % prefix
             try:
-                page = wikipedia_updated.page(search_query.encode('utf-8'))
+                page = wikipedia_updated.page(search_query)
 
                 answer = page.lang_title(prefix)
                 print("Answer: %s" % answer)
             except Exception as e:
                 print e
                 print "term was not found"
-                answer = "term was not found"
+                #answer = "term was not found"
+                answer = str(e)
 
             form = searchForm(initial={'answer': answer})
     else:
