@@ -15,7 +15,7 @@ def searchView(request):
         if ('prefix' in request.GET) and request.GET['prefix'].strip():
             prefix = request.GET['prefix']
 
-            #print search_query
+            print(search_query)
             detected_langid = langid.classify(search_query)[0]
             print "Detected Lang: %s" % detected_langid
             wk.set_lang(detected_langid)
@@ -25,10 +25,10 @@ def searchView(request):
                 page = wk.page(search_query)
 
                 answer = page.lang_title(prefix)
-                print "Answer: %s" % answer
+                print("Answer: %s" % answer)
             except:
-                print "Term was not found"
-                answer = "Term was not found"
+                print "term was not found"
+                answer = "term was not found"
 
             form = searchForm(initial={'answer': answer})
     else:
