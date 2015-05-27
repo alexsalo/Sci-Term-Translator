@@ -16,9 +16,11 @@ def searchView(request):
         if ('prefix' in request.GET) and request.GET['prefix'].strip():
             prefix = request.GET['prefix']
 
-            search_query = BeautifulSoup(search_query,from_encoding="utf-8")
-            print search_query
             detected_langid = langid.classify(search_query)[0]
+
+            search_query = BeautifulSoup(search_query,from_encoding="utf-8")
+            print search_query.decode('utf-8')
+
             print "Detected Lang: %s" % detected_langid
             wikipedia_updated.set_lang(detected_langid)
 
