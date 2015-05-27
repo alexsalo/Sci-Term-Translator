@@ -4,7 +4,7 @@ from django import forms
 SUPPORTED_PREFIXES = (
     ('ru', 'Russian'),
     ('en', 'English'),
-    ('fr', 'French'),
+    ('zh', 'Chinese'),
     ('de', 'German'),
     ('ar', 'Arabic'),
     ('cs', 'Czech'),
