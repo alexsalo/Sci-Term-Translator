@@ -113,8 +113,6 @@ body{
     background-color:#ffffff;
 }
 
-@media handheld, only screen and (max-width: 560px), only screen and (max-device-width: 480px)  {
-    body{
-        background: #ffffff;
-    }
-}
+/*@media handheld, only screen and (max-width: 560px), only screen and (max-device-width: 480px)  {*/
+    /**/
+/*}*/

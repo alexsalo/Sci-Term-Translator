@@ -12,7 +12,7 @@ SUPPORTED_PREFIXES = (
 
 class searchForm(forms.Form):
     search_query = forms.CharField(label='Term', max_length=100, widget=forms.TextInput(
-        attrs={'type':'search', 'id':'search', 'placeholder': 'search...'}))
+        attrs={'type':'search', 'id':'search', 'placeholder': 'Search...'}))
     #detected_lang = forms.MultipleChoiceField(choices=SUPPORTED_PREFIXES, label='Language Detected:')
     # = forms.ChoiceField(label='Select desired language')
     prefix = forms.MultipleChoiceField(choices=SUPPORTED_PREFIXES, widget=forms.RadioSelect(
