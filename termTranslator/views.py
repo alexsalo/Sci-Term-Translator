@@ -15,7 +15,7 @@ def searchView(request):
         if ('prefix' in request.GET) and request.GET['prefix'].strip():
             prefix = request.GET['prefix']
 
-            print search_query.decode()
+            #print search_query
             detected_langid = langid.classify(search_query)[0]
             print "Detected Lang: %s" % detected_langid
             wk.set_lang(detected_langid)
