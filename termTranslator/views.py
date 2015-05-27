@@ -16,19 +16,17 @@ def searchView(request):
         if ('prefix' in request.GET) and request.GET['prefix'].strip():
             prefix = request.GET['prefix']
 
+            print BeautifulSoup(search_query,from_encoding="utf-8")
+
             detected_langid = langid.classify(search_query)[0]
             print "Detected Lang: %s" % detected_langid
-
-            print BeautifulSoup(search_query,from_encoding="utf-8")
 
             wikipedia_updated.set_lang(detected_langid)
 
             print "Translate To: %s" % prefix
             try:
                 page = wikipedia_updated.page(search_query)
-
                 answer = page.lang_title(prefix)
-                print("Answer: %s" % answer)
             except Exception as e:
                 print e
                 print "term was not found"
