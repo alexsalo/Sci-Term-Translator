@@ -27,11 +27,11 @@ def searchView(request):
             try:
                 page = wikipedia_updated.page(search_query)
                 answer = page.lang_title(prefix)
+                print BeautifulSoup(answer,from_encoding="utf-8")
             except Exception as e:
                 print e
-                print "term was not found"
-                #answer = "term was not found"
-                answer = str(e)
+                answer = "Term was not found"
+                #answer = str(e)
             form = searchForm(initial={'answer': answer})
     else:
         form = searchForm()
