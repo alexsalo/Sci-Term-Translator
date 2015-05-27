@@ -3,7 +3,7 @@ from forms import *
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 import langid
-import wikipedia as wk
+import wikipedia_updated as wk
 
 supported_prefixes = [prefix[0] for prefix in SUPPORTED_PREFIXES]
 print 'supported_prefixes: ' + str(supported_prefixes)
