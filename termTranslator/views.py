@@ -19,7 +19,7 @@ def searchView(request):
             detected_langid = langid.classify(search_query)[0]
 
             search_query = BeautifulSoup(search_query,from_encoding="utf-8")
-            print search_query.decode('utf-8')
+            print search_query
 
             print "Detected Lang: %s" % detected_langid
             wikipedia_updated.set_lang(detected_langid)
