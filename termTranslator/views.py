@@ -2,6 +2,7 @@ __author__ = 'alex'
 from forms import *
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from bs4 import BeautifulSoup
 import langid
 import wikipedia_updated
 
@@ -15,19 +16,11 @@ def searchView(request):
         if ('prefix' in request.GET) and request.GET['prefix'].strip():
             prefix = request.GET['prefix']
 
-            #print(search_query)
+            search_query = BeautifulSoup(search_query,from_encoding="utf-8")
+            print search_query
             detected_langid = langid.classify(search_query)[0]
             print "Detected Lang: %s" % detected_langid
             wikipedia_updated.set_lang(detected_langid)
-
-            if type(search_query) == str:
-                # Ignore errors even if the string is not proper UTF-8 or has
-                # broken marker bytes.
-                # Python built-in function unicode() can do this.
-                search_query = unicode(search_query, "utf-8", errors="ignore")
-            else:
-                # Assume the value object has proper __unicode__() method
-                search_query = unicode(search_query)
 
             print "Translate To: %s" % prefix
             try:
