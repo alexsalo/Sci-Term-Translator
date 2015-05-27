@@ -17,11 +17,10 @@ def searchView(request):
             prefix = request.GET['prefix']
 
             detected_langid = langid.classify(search_query)[0]
-
-            search_query = BeautifulSoup(search_query,from_encoding="utf-8")
-            print search_query
-
             print "Detected Lang: %s" % detected_langid
+
+            print BeautifulSoup(search_query,from_encoding="utf-8")
+
             wikipedia_updated.set_lang(detected_langid)
 
             print "Translate To: %s" % prefix
@@ -35,7 +34,7 @@ def searchView(request):
                 print "term was not found"
                 #answer = "term was not found"
                 answer = str(e)
-
+            answer = search_query
             form = searchForm(initial={'answer': answer})
     else:
         form = searchForm()
