@@ -22,12 +22,12 @@ def searchView(request):
 
             print "Translate To: %s" % prefix
             try:
-                page = wikipedia_updated.page(search_query)
+                page = wikipedia_updated.page(search_query.decode('utf-8'))
 
                 answer = page.lang_title(prefix)
                 print("Answer: %s" % answer)
-            except Exception, e:
-                print str(e)
+            except Exception as e:
+                print e
                 print "term was not found"
                 answer = "term was not found"
 
