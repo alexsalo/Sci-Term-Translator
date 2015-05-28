@@ -17,6 +17,7 @@ class searchForm(forms.Form):
     # = forms.ChoiceField(label='Select desired language')
     prefix = forms.MultipleChoiceField(choices=SUPPORTED_PREFIXES, widget=forms.RadioSelect(
         attrs={'type':'radio', 'id':'radio'}),
-        initial='en')
+        ) #
     answer = forms.CharField(label='Answer', max_length=100, widget=forms.TextInput(
-         attrs={'type':'search', 'id':'search', 'placeholder': 'Translation...'}))
+         attrs={'type':'search', 'id':'search', 'placeholder': 'Translation...', 'readonly': 'True'}))
+#searchForm.prefix.valid_value()

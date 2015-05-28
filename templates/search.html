@@ -16,11 +16,15 @@
             {{ form.search_query }}
         </div>
 
-        <div class="translate-to-radio">
+        <div class="translate-to-radio unselectable">
             {% for id, name in form.prefix.field.choices%}
-
-                <input type="radio" id="{{name}}" name="prefix" value="{{id}}">
-        	        <label for="{{name}}">{{ name }} </label>
+                {% if  form.prefix.value == id %}
+                    <input type="radio" id="{{name}}" name="prefix" value="{{id}}" checked="">
+                        <label for="{{name}}">{{ name }} </label>
+                {% else %}
+                    <input type="radio" id="{{name}}" name="prefix" value="{{id}}" >
+                        <label for="{{name}}">{{ name }} </label>
+                {% endif %}
             {% endfor %}
         </div>
 

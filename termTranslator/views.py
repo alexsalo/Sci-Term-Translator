@@ -21,6 +21,11 @@ def searchView(request):
             detected_langid = langid.classify(search_query)[0]
             print "Detected Lang: %s" % detected_langid
 
+            if prefix == 'en' and detected_langid == 'en':
+                detected_langid = 'de'
+            if prefix == 'de' and detected_langid == 'de':
+                detected_langid = 'en'
+
             wikipedia_updated.set_lang(detected_langid)
 
             print "Translate To: %s" % prefix
@@ -32,9 +37,9 @@ def searchView(request):
                 print e
                 answer = "Term was not found"
                 #answer = str(e)
-            form = searchForm(initial={'answer': answer})
+            form = searchForm(initial={'answer': answer, 'prefix' : prefix, 'search_query' : search_query})
         else:
-            form = searchForm()
+            form = searchForm() #initial={'prefix' : 'ru'})
     else:
         form = searchForm()
 

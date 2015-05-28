@@ -104,13 +104,20 @@ body{
     border-color: #ddd;
 	color: #63717f;
 }
-/*
- Change background color for label next to checked radio button
- to make it look like highlighted button
-*/
+
+ /*Change background color for label next to checked radio button*/
+ /*to make it look like highlighted button*/
+
 .box input[type=radio]:checked + label {
    background-image: none;
     background-color:#ffffff;
+}
+
+.unselectable {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 /*@media handheld, only screen and (max-width: 560px), only screen and (max-device-width: 480px)  {*/
