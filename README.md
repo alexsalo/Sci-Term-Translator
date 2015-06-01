@@ -10,3 +10,8 @@ Allows to translate Sci Terms via Wikipedia API.
 ###CV Joint: English -> Russian
 * Google Translate : шарнир 
 * SciTermTranslator: Шарнир равных угловых скоростей
+
+
+### Stick shift: English -> Russian
+* Google Translate : палка сдвиг 
+* SciTermTranslator: Механическая коробка передач
