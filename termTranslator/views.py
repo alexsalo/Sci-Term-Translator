@@ -20,23 +20,43 @@ def searchView(request):
 
             detected_langid = langid.classify(search_query)[0]
             print "Detected Lang: %s" % detected_langid
+            print "Translate To: %s" % prefix
 
             if prefix == 'en' and detected_langid == 'en':
                 detected_langid = 'de'
             if prefix == 'de' and detected_langid == 'de':
                 detected_langid = 'en'
 
+            translationFound = False
             wikipedia_updated.set_lang(detected_langid)
 
-            print "Translate To: %s" % prefix
+            # Base case
             try:
                 page = wikipedia_updated.page(search_query)
                 answer = page.lang_title(prefix)
-                print BeautifulSoup(answer,from_encoding="utf-8")
+                print BeautifulSoup(answer, from_encoding="utf-8")
+                translationFound = True
             except Exception as e:
                 print e
+
+            # Try other languages
+            if not translationFound:
+                lids = [p for p in supported_prefixes if p != detected_langid and p!= prefix]
+                for lid in lids:
+                    if not translationFound:
+                        print "Translation was not found, trying to use page langs: %s" % lid
+                        wikipedia_updated.set_lang(lid)
+                        try:
+                            page = wikipedia_updated.page(search_query)
+                            answer = page.lang_title(prefix)
+                            print BeautifulSoup(answer,from_encoding="utf-8")
+                            translationFound = True
+                        except:
+                            pass
+
+            if not translationFound:
                 answer = "Term was not found"
-                #answer = str(e)
+
             form = searchForm(initial={'answer': answer, 'prefix' : prefix, 'search_query' : search_query})
         else:
             form = searchForm() #initial={'prefix' : 'ru'})
